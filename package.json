@@ -1,0 +1,23 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "main": "Coumpound_interest_calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsdavidmea/Projects-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsdavidmea/Projects-/issues"
+  },
+  "homepage": "https://github.com/itsdavidmea/Projects-#readme",
+  "description": "",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
