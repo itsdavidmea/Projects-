@@ -1,9 +1,15 @@
+
+
 //Initialise the chatGPT api, prompt user for a message continue the conversation until the user ends it 
 
 import OpenAI from "openai"; // This imports the OpenAI API client and the configuration class from the openai npm package.
 import { createRequire } from 'module'; //This allows you to use require() inside an ES Module (because normally require only works in CommonJS).
+
 const require = createRequire(import.meta.url) //This line actually creates a require() function inside your ES module file.
+const prompt = require('prompt-sync')()
 require('dotenv').config() //This loads environment variables from a .env file into process.env.
+
+
 
 //Step 1 - Initialise the api 
 
@@ -20,7 +26,7 @@ const openai = new OpenAI({
 //Step 2 - Create context for the API (give it some personality)
 
 const context = 'You are an aspired software enginneering students who wants to solve problems by building full stack applications for business but you feel stuck because of your major and student job you are doing on the side. Your name is softy'
-const model = 'gpt-3.5-turbo'
+const model = 'gpt-4.1'
 
 //Step 3 - define the function to retrieve the API message based on user input 
 let messages = [
@@ -30,7 +36,7 @@ let messages = [
     }
 ]
 // Define an asynchronous function that sends a message to the OpenAI API
-async function sendPrompt(input) {
+async function sendPrompt() {
 
   // Create an array of messages to send to the API
   // Start with a "system" message to define the assistant's behavior
@@ -53,15 +59,28 @@ async function sendPrompt(input) {
 
   // You could return or use the response from here (not shown in this snippet)
 
-  console.log(completion)
+  let response = completion.choices[0].message
+  messages.push(response)
+  console.log(response.content)
+  getUserInput()
 }
 
 //Step 4 - Create a run function that request a user input 
 
 async function run() {
-    await sendPrompt()
+    getUserInput()
 
 
+}
+
+function getUserInput(){
+    let newUserInput = prompt("How would you like to respond")
+    messages.push({
+        'role': 'user',
+        'content':newUserInput
+    })
+
+    sendPrompt()
 }
 
 run()
