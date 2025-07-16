@@ -166,7 +166,7 @@
                     <p>${todo}</p>
                         <div class="actionsContainer">
                             <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button><i class="fa-solid fa-trash" onclick="deleteTest(this)"></i></button>
+                            <button onclick="deleteTest(${i})"><i class="fa-solid fa-trash" ></i></button>
                         </div>
                 </div>`
             }
@@ -196,16 +196,25 @@
         let deleteBtn = document.querySelectorAll('.fa-trash')
         
         
-        function deleteTest(i) {
+        function deleteTest(index) {
             //Using splice 
-            iconParent = i.closest('.todoItem')
+            //iconParent = i.closest('.todoItem'), only if i was th parameter 
             // let index = todo_list.indexOf(iconParent.value)
             // todo_list.splice(index, 1)
             // console.log('removed successfully')
             // paintUI()
 
             //Using filter 
-            
+            //const new_todolist = todo_list.filter(todo_list => todo_list !== iconParent.value)
+            //todo_list = new_todolist
+            //paintUI()
+            let new_todolist = todo_list.filter((currentValue, currentIndex) => {
+                return currentIndex !== index // return/keep the array if the currentValue is not equal to the value that we want to remove 
+
+            })
+            todo_list = new_todolist
+            paintUI()
+
         
             
         }
