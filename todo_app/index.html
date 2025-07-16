@@ -166,7 +166,7 @@
                     <p>${todo}</p>
                         <div class="actionsContainer">
                             <button><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button><i class="fa-solid fa-trash"></i></button>
+                            <button><i class="fa-solid fa-trash" onclick="deleteTest(this)"></i></button>
                         </div>
                 </div>`
             }
@@ -195,26 +195,21 @@
 
         let deleteBtn = document.querySelectorAll('.fa-trash')
         
-        deleteBtn.forEach((icon) => {
-    
-            let currentTodo = icon.closest('.todoItem') 
-            let currentTodoValue = currentTodo.querySelector('p').textContent
-            console.log(currentTodoValue)
+        
+        function deleteTest(i) {
+            //Using splice 
+            iconParent = i.closest('.todoItem')
+            // let index = todo_list.indexOf(iconParent.value)
+            // todo_list.splice(index, 1)
+            // console.log('removed successfully')
+            // paintUI()
+
+            //Using filter 
             
-            icon.addEventListener('click', () => {
-                deleteTodo(currentTodoValue)
-            })
-
-        })
-
-        function deleteTodo(value) {
-
-            let index = todo_list.indexOf(value)
-            todo_list.splice(index, 1)
-            console.log('removed successfully')
-            paintUI()
+        
             
         }
+        
         //Step 4: function that allows us to edit a todo
 
         //Step 5: persist all information 
